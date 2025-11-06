@@ -28,7 +28,11 @@ public class CruiseControl {
         } else if (this.speedLimit != null && speedSet > this.speedLimit) {
             this.speedSet = null;
             throw new SpeedSetAboveSpeedLimitException("La velocidad establecida no puede superar el límite de velocidad");
-        } else {
+        } else if (this.speedLimit != null && speedSet < 0) {
+            this.speedSet = null;
+            throw new IncorrectSpeedException("La velocidad debe ser positiva");
+        }
+        else {
             this.speedSet = speedSet;
         }
 		
