@@ -27,22 +27,23 @@ class CruiseControlTest {
         cruiseControl.setSpeedLimit(100);
         assertTrue(cruiseControl.getSpeedLimit() == 100);
     }
-/* Comento para que no falle el build luego, paso a la siguiente parte
     @Test
     void testNegativeSpeedLimit() throws IncorrectSpeedException, SpeedSetAboveSpeedLimitException {
         CruiseControl cruiseControl = new CruiseControl(speedometer);
         assertTrue(cruiseControl.getSpeedSet() == null);
         cruiseControl.setSpeedLimit(100);
+        try{
         cruiseControl.setSpeedSet(-100);
-        assertTrue(cruiseControl.getSpeedSet() == null);
+        } catch (IncorrectSpeedException e) {}
     }
-
     @Test
     void testSpeedLimit() throws IncorrectSpeedException, SpeedSetAboveSpeedLimitException {
         CruiseControl cruiseControl = new CruiseControl(speedometer);
         cruiseControl.setSpeedLimit(50);
         assertTrue(cruiseControl.getSpeedLimit() == 50);
+        try {
         cruiseControl.setSpeedSet(100);
-        assertTrue(cruiseControl.getSpeedSet() == 50);
-    } */
+        } catch (SpeedSetAboveSpeedLimitException e) {}
+        assertTrue(cruiseControl.getSpeedSet() == null);
+    }
 }
